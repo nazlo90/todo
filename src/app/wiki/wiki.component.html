@@ -1,0 +1,16 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="ui-inputgroup">
+      <input #f type="text" pInputText placeholder="Search"
+             pTooltip="Enter keyword" tooltipPosition="bottom" tooltipEvent="focus" (keyup.enter)="search(f.value)">
+      <button pButton type="button" icon="fa-search" [disabled]="!f.value.length" class="ui-button-secondary" (click)="search(f.value)"></button>
+    </div>
+  </div>
+  <div class="ui-g-12">
+    <div *ngFor="let item of items" style="margin-bottom:20px">
+      <a href="{{item.link}}">{{item.name}}</a>
+      <br />
+      {{item.description}}
+    </div>
+  </div>
+</div>

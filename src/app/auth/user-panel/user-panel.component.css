@@ -1,0 +1,68 @@
+ol {
+  padding-left: 0;
+  list-style: none;
+}
+ol li {
+  margin-bottom: 10px;
+  position: relative;
+}
+ol li > div {
+  padding: 20px 35px 20px 0;
+}
+ol label {
+  position: relative;
+  left: 0;
+  display: inline-block;
+  width: 95%;
+  max-width: 95%;
+}
+ol label > i {
+  position: absolute;
+  right: 0;
+  opacity: 0;
+}
+ol label:hover > i {
+  opacity: 1;
+}
+ol label:focus {
+  display: none;
+}
+ol input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+ol input:focus {
+  opacity: 1;
+  width: auto;
+  height: auto;
+  display: inline-block;
+  width: 95%;
+  max-width: 95%;
+}
+ol input:focus + label {
+  display: none;
+}
+.fa-arrows {
+  position: absolute;
+  right: 5px;
+  top: 0;
+  bottom: 25px;
+  margin: auto;
+  height: 32px;
+}
+button.small {
+  position: relative;
+  bottom: -20px;
+  width: calc(100% + 35px);
+}
+.ui-widget-content .ui-button.small:enabled:hover,
+.ui-widget-content .ui-button.small:enabled:focus,
+.ui-widget-content .ui-button.small:enabled:active {
+  background-color: #d43f3a;
+  border-color: #d9534f;
+}
+

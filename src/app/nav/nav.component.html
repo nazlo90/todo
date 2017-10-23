@@ -1,0 +1,3 @@
+<p-menubar [model]="items">
+  <button pButton label="Quit" icon="fa-power-off" (click)="this.authService.logout()" *ngIf="this.authService.isLoggedIn()"></button>
+</p-menubar>

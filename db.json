@@ -1,0 +1,30 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstname": "test",
+      "email": "test@test.com",
+      "password": "111111",
+      "description": "",
+      "gender": "Male"
+    },
+    {
+      "id": 2,
+      "firstname": "test1",
+      "email": "test.com",
+      "password": "22",
+      "description": "",
+      "gender": "Male"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

@@ -1,0 +1,11 @@
+<ngx-carousel
+  [inputs]="carouselOne"
+  (carouselLoad)="myfunc($event)">
+  <ngx-item class="custom-item-styles" NgxCarouselItem  *ngFor="let wallpaper of wallpaperListing?.wallpapers">
+    <div class="img-item">
+      <img src="{{ wallpaper.previewUrl }}" alt="">
+    </div>
+  </ngx-item>
+  <button NgxCarouselPrev class='leftRs'>&lt;</button>
+  <button NgxCarouselNext class='rightRs'>&gt;</button>
+</ngx-carousel>

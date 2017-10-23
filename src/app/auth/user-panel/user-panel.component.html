@@ -1,0 +1,120 @@
+<p-messages [value]="[{severity: 'success', summary: 'Greetings, ', detail: (authService.user | async)?.email}]"
+            [closable]="false"></p-messages>
+<p-growl [value]="msgs"></p-growl>
+<form [formGroup]="userform" #todos="ngForm">
+  <p-panel header="Add TODO">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Title:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="text" formControlName="title" placeholder=""
+                 [(ngModel)]="todoItem.title"
+                 name="title" required/>
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-message ui-messages-error ui-corner-all"
+               *ngIf="!userform.controls['title'].valid&&userform.controls['title'].dirty">
+            <i class="fa fa-close"></i>
+            Title is required
+          </div>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Description:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="text" formControlName="descr" placeholder=""
+                 [(ngModel)]="todoItem.description"
+                 name="descr" required/>
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-message ui-messages-error ui-corner-all"
+               *ngIf="!userform.controls['descr'].valid&&userform.controls['descr'].dirty">
+            <i class="fa fa-close"></i>
+            Description is required
+          </div>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-6">
+          <button pButton type="submit" label="Add TODO" [disabled]="!userform.valid" (click)="addInfo()"></button>
+        </div>
+        <div class="ui-grid-col-4"></div>
+      </div>
+    </div>
+  </p-panel>
+</form>
+<!--<h3>tasks progress</h3>-->
+<!--<p-progressBar [value]="" (click)="progress()"></p-progressBar>-->
+<!--<br>-->
+<!--{{ todos$ | async | json }}-->
+<div class="ui-grid ui-grid-pad ui-grid-responsive">
+  <div class="ui-grid-row">
+    <p-panel header="TODO list" class="ui-grid-col-6 ui-widget-content"
+             pDroppable="done" (onDrop)="onDropDone()" [ngClass]="{'ui-state-highlight':focused_done}">
+      <ol class="todo_items">
+        <li *ngFor="let todo of todos$ | async; let i = index" [attr.data-index]="i"
+            class="ui-state-default ui-helper-clearfix" pDraggable="todo" draggable="true"
+            (onDragStart)="onDragStart($event)" (onDragEnd)="onDragEnd($event)">
+          <input hidden class="todo-id" [value]="todo.id" [attr.todo-id]="todo.id" [attr.todo-title]="todo.title"
+                 [attr.todo-description]="todo.description">
+          <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-12">
+                <input id="tit-{{i}}" name="tit-{{i}}" [(ngModel)]="todo.title" (keyup.enter)="editInfo(todo)"
+                       (blur)="editInfo(todo)">
+                <label for="tit-{{i}}">{{todo.title}}<i class="fa fa-pencil" aria-hidden="true"></i></label>
+              </div>
+            </div>
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-12">
+                <input id="des-{{i}}" name="des-{{i}}" [(ngModel)]="todo.description" (keyup.enter)="editInfo(todo)"
+                       (blur)="editInfo(todo)">
+                <label for="des-{{i}}">{{todo.description}}<i class="fa fa-pencil" aria-hidden="true"></i></label>
+              </div>
+            </div>
+            <button pButton type="button" label="remove" class="ui-button-danger small"
+                    (click)="confirm($event)"></button>
+          </div>
+          <i class="fa fa-arrows fa-2x"></i>
+        </li>
+      </ol>
+    </p-panel>
+    <p-panel header="DONE list" class="ui-grid-col-6 ui-widget-content"
+             pDroppable="todo" (onDrop)="onDrop()" [ngClass]="{'ui-state-highlight':focused}">
+      <ol class="done_items">
+        <li *ngFor="let done of done$ | async; let i = index" [attr.data-index]="i"
+            class="ui-state-default ui-helper-clearfix" pDraggable="done" draggable="true"
+            (onDragStart)="onDragStartDone($event)" (onDragEnd)="onDragEndDone($event)">
+          <input hidden class="todo-id" [value]="done.id" [attr.todo-id]="done.id" [attr.todo-title]="done.title"
+                 [attr.todo-description]="done.description">
+          <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-12">
+                <input id="tit_d-{{i}}" name="tit_d-{{i}}" [(ngModel)]="done.title" (keyup.enter)="editInfoDone(done)"
+                       (blur)="editInfoDone(done)">
+                <label for="tit_d-{{i}}">{{done.title}}<i class="fa fa-pencil" aria-hidden="true"></i></label>
+              </div>
+            </div>
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-12">
+                <input id="des_d-{{i}}" name="des_d-{{i}}" [(ngModel)]="done.description"
+                       (keyup.enter)="editInfoDone(done)"
+                       (blur)="editInfoDone(done)">
+                <label for="des_d-{{i}}">{{done.description}}<i class="fa fa-pencil" aria-hidden="true"></i></label>
+              </div>
+            </div>
+            <button pButton type="button" label="remove" class="ui-button-danger small"
+                    (click)="confirmDone($event)"></button>
+          </div>
+          <i class="fa fa-arrows fa-2x"></i>
+        </li>
+      </ol>
+    </p-panel>
+  </div>
+</div>
+<p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425" #cd></p-confirmDialog>

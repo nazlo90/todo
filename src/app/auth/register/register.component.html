@@ -1,0 +1,97 @@
+<!--<form [formGroup]="userForm" (submit)="signup()" novalidate>-->
+  <!--<p>Form value: {{ userForm.value | json }}</p>-->
+  <!--<p>Form status: {{ userForm.status | json }}</p>-->
+  <!--<p>Form valid: {{ userForm.valid | json }}</p>-->
+  <!--<div class="form-group">-->
+    <!--<label>Email</label>-->
+    <!--<input class="form-control"-->
+           <!--formControlName="email"-->
+           <!--type="email">-->
+    <!--<div [hidden]="userForm.get('email')?.valid || userForm.get('email')?.untouched"-->
+         <!--class="alert alert-danger">-->
+      <!--Incorrect email-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="form-group">-->
+    <!--<label>Password</label>-->
+    <!--<input class="form-control"-->
+           <!--formControlName="password"-->
+           <!--type="password"/>-->
+    <!--<div [hidden]="userForm.get('password')?.valid || userForm.get('password')?.untouched"-->
+         <!--class="alert alert-danger">-->
+      <!--Type your password-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="form-group">-->
+    <!--<label>Repeat password</label>-->
+    <!--<input class="form-control"-->
+           <!--formControlName="passwordRepeat"-->
+           <!--type="password"/>-->
+    <!--<div [hidden]="userForm.get('passwordRepeat')?.valid || userForm.get('passwordRepeat')?.untouched"-->
+         <!--class="alert alert-danger">-->
+      <!--Type your password again-->
+    <!--</div>-->
+    <!--<div [hidden]="userForm.get('passwordRepeat')?.valid-->
+     <!--|| userForm.get('passwordRepeat')?.untouched-->
+     <!--|| !userForm.get('passwordRepeat')?.errors?.notEquivalent"-->
+         <!--class="alert alert-danger">-->
+      <!--NOT EQUALs-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<button class="btn btn-success" [disabled]="!userForm.valid">-->
+    <!--Register-->
+  <!--</button>-->
+<!--</form>-->
+
+<p-growl [value]="msgs" sticky="sticky"></p-growl>
+
+<form [formGroup]="userform" (submit)="signup()">
+  <p>Form value: {{ userform.value | json }}</p>
+  <p>Form status: {{ userform.status | json }}</p>
+  <p>Form valid: {{ userform.valid | json }}</p>
+  <p-panel header="Register">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Email *:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="text" formControlName="email" placeholder="Required"/>
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userform.controls['email'].valid&&userform.controls['email'].dirty">
+            <i class="fa fa-close"></i>
+            <span *ngIf="userform.controls['email'].errors['required']">Email is required</span>
+            <span *ngIf="userform.controls['email'].errors['pattern']">Email is invalid</span>
+          </div>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Password *:
+        </div>
+        <div class="ui-grid-col-6">
+          <input pInputText type="password" formControlName="password" placeholder="Required - Min(6)"/>
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userform.controls['password'].valid&&userform.controls['password'].dirty">
+            <i class="fa fa-close"></i>
+            <span *ngIf="userform.controls['password'].errors['required']">Password is required</span>
+            <span *ngIf="userform.controls['password'].errors['minlength']">Must be longer than 6 characters</span>
+          </div>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-6">
+          <button pButton type="submit" label="Register" [disabled]="!userform.valid"></button>
+        </div>
+        <div class="ui-grid-col-4"></div>
+      </div>
+      <div *ngIf="submitted">
+        <!--<br>-->
+        <!--{{diagnostic}}-->
+      </div>
+    </div>
+  </p-panel>
+</form>
