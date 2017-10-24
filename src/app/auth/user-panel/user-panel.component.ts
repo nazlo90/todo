@@ -151,8 +151,6 @@ export class UserPanelComponent implements OnInit {
     });
   }
   progress() {
-    console.log(this.db.collection('todos').snapshotChanges());
-    // this.todoCollection.add(this.todoItem.getObjectModel());
     // const todoItems = document.getElementsByClassName('todo_items')[0].children.length;
     // const doneItems = document.getElementsByClassName('done_items')[0].children.length;
     // if (todoItems > 0 && doneItems > 0) {
