@@ -15,11 +15,15 @@ ol label {
   display: inline-block;
   width: 95%;
   max-width: 95%;
+  border: 1px dashed transparent;
 }
 ol label > i {
   position: absolute;
   right: 0;
   opacity: 0;
+}
+ol label:hover {
+  border: 1px dashed;
 }
 ol label:hover > i {
   opacity: 1;

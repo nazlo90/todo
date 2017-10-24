@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {environment} from '../../../environments/environment';
 import {Todo, MoveTodo} from '../models/todo';
-import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
+import {AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
 import {TodoForm} from '../models/todo-form';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ConfirmationService} from 'primeng/primeng';
@@ -27,7 +27,6 @@ export class UserPanelComponent implements OnInit {
   msgs = [];
   focused: boolean;
   focused_done: boolean;
-  userDoc: AngularFirestoreDocument<any>;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -56,6 +55,7 @@ export class UserPanelComponent implements OnInit {
         return { id, ...data };
       });
     });
+    console.log(AuthService);
   }
   addInfo() {
     this.todoCollection.add(this.todoItem.getObjectModel());
@@ -151,8 +151,7 @@ export class UserPanelComponent implements OnInit {
     });
   }
   progress() {
-    this.userDoc = this.db.doc('/todos/title');
-    console.log(this.userDoc);
+    console.log(this.db.collection('todos').snapshotChanges());
     // this.todoCollection.add(this.todoItem.getObjectModel());
     // const todoItems = document.getElementsByClassName('todo_items')[0].children.length;
     // const doneItems = document.getElementsByClassName('done_items')[0].children.length;

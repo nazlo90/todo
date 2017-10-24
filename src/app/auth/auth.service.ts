@@ -27,7 +27,6 @@ export class AuthService {
       .auth
       .signInWithEmailAndPassword(email, password);
   }
-
   logout() {
     localStorage.removeItem('user');
     this.router.navigate(['../login'], {
