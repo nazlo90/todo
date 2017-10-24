@@ -48,16 +48,15 @@
     </div>
   </p-panel>
 </form>
-<!--<h3>tasks progress</h3>-->
-<!--<p-progressBar [value]="" (click)="progress()"></p-progressBar>-->
-<!--<br>-->
-<!--{{ todos$ | async | json }}-->
+<h3>tasks progress</h3>
+<p-progressBar [value]="progress"></p-progressBar>
+<br>
 <div class="ui-grid ui-grid-pad ui-grid-responsive">
   <div class="ui-grid-row">
     <p-panel header="TODO list" class="ui-grid-col-6 ui-widget-content"
              pDroppable="done" (onDrop)="onDropDone()" [ngClass]="{'ui-state-highlight':focused_done}">
       <ol class="todo_items">
-        <li *ngFor="let todo of todos$ | async; let i = index" [attr.data-index]="i"
+        <li *ngFor="let todo of todosN; let i = index" [attr.data-index]="i"
             class="ui-state-default ui-helper-clearfix" pDraggable="todo" draggable="true"
             (onDragStart)="onDragStart($event)" (onDragEnd)="onDragEnd($event)">
           <input hidden class="todo-id" [value]="todo.id" [attr.todo-id]="todo.id" [attr.todo-title]="todo.title"
@@ -87,7 +86,7 @@
     <p-panel header="DONE list" class="ui-grid-col-6 ui-widget-content"
              pDroppable="todo" (onDrop)="onDrop()" [ngClass]="{'ui-state-highlight':focused}">
       <ol class="done_items">
-        <li *ngFor="let done of done$ | async; let i = index" [attr.data-index]="i"
+        <li *ngFor="let done of dones; let i = index" [attr.data-index]="i"
             class="ui-state-default ui-helper-clearfix" pDraggable="done" draggable="true"
             (onDragStart)="onDragStartDone($event)" (onDragEnd)="onDragEndDone($event)">
           <input hidden class="todo-id" [value]="done.id" [attr.todo-id]="done.id" [attr.todo-title]="done.title"

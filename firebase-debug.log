@@ -1,0 +1,90 @@
+[debug] [2017-10-24T18:53:54.030Z] ----------------------------------------------------------------------
+[debug] [2017-10-24T18:53:54.046Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\moe\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2017-10-24T18:53:54.046Z] CLI Version:   3.13.1
+[debug] [2017-10-24T18:53:54.046Z] Platform:      win32
+[debug] [2017-10-24T18:53:54.046Z] Node Version:  v6.11.4
+[debug] [2017-10-24T18:53:54.046Z] Time:          Tue Oct 24 2017 21:53:54 GMT+0300 (Финляндия (лето))
+[debug] [2017-10-24T18:53:54.046Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-24T18:53:54.061Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-24T18:53:54.061Z] > authorizing via signed-in user
+[debug] [2017-10-24T18:53:54.061Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-10-24T18:53:54.061Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/eZt794Bx2P9us8rOszI026cUIuMqlRVuG8Eh-o1SmtY',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Tue Oct 24 2017 21:53:54 GMT+0300 (Финляндия (лето))
+[debug] [2017-10-24T18:53:54.776Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-24T18:53:54.792Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/todo-d0bff  
+ Tue Oct 24 2017 21:53:54 GMT+0300 (Финляндия (лето))
+[debug] [2017-10-24T18:53:55.809Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-24T18:53:55.809Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/todo-d0bff/tokens  
+ Tue Oct 24 2017 21:53:55 GMT+0300 (Финляндия (лето))
+[debug] [2017-10-24T18:53:56.494Z] <<< HTTP RESPONSE 200
+[info] 5
+[info] 
+[info] === Deploying to 'todo-d0bff'...
+[info] 
+[info] i  deploying database, storage, firestore, functions, hosting
+[info] i  database: checking rules syntax...
+[debug] [2017-10-24T18:53:58.042Z] >>> HTTP REQUEST PUT https://todo-d0bff.firebaseio.com/.settings/rules.json?dryRun=true {
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+} 
+ Tue Oct 24 2017 21:53:58 GMT+0300 (Финляндия (лето))
+[debug] [2017-10-24T18:53:58.790Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax is valid
+[debug] [2017-10-24T18:53:58.790Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/todo-d0bff  
+ Tue Oct 24 2017 21:53:58 GMT+0300 (Финляндия (лето))
+[debug] [2017-10-24T18:53:59.915Z] <<< HTTP RESPONSE 200
+[info] i  storage: checking storage.rules for compilation errors...
+[debug] [2017-10-24T18:53:59.915Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/todo-d0bff:test { source: { files: [ [Object] ] } } 
+ Tue Oct 24 2017 21:53:59 GMT+0300 (Финляндия (лето))
+[debug] [2017-10-24T18:54:01.083Z] <<< HTTP RESPONSE 200
+[info] +  storage: rules file storage.rules compiled successfully
+[info] i  firestore: checking firestore.rules for compilation errors...
+[debug] [2017-10-24T18:54:01.083Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/todo-d0bff:test { source: { files: [ [Object] ] } } 
+ Tue Oct 24 2017 21:54:01 GMT+0300 (Финляндия (лето))
+[debug] [2017-10-24T18:54:01.845Z] <<< HTTP RESPONSE 200
+[info] +  firestore: rules file firestore.rules compiled successfully
+[debug] [2017-10-24T18:54:01.845Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "firebase-admin": "~5.4.0",
+    "firebase-functions": "^0.7.0"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-10-24T18:54:01.845Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/todo-d0bff?view=CONSUMER_VIEW  
+ Tue Oct 24 2017 21:54:01 GMT+0300 (Финляндия (лето))
+[debug] [2017-10-24T18:54:01.845Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/todo-d0bff?view=CONSUMER_VIEW  
+ Tue Oct 24 2017 21:54:01 GMT+0300 (Финляндия (лето))
+[debug] [2017-10-24T18:54:03.201Z] <<< HTTP RESPONSE 200
+[info] +  runtimeconfig: all necessary APIs are enabled
+[debug] [2017-10-24T18:54:03.248Z] <<< HTTP RESPONSE 200
+[info] +  functions: all necessary APIs are enabled
+[debug] [2017-10-24T18:54:03.248Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/todo-d0bff  
+ Tue Oct 24 2017 21:54:03 GMT+0300 (Финляндия (лето))
+[debug] [2017-10-24T18:54:03.248Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/todo-d0bff/apiKeys  
+ Tue Oct 24 2017 21:54:03 GMT+0300 (Финляндия (лето))
+[debug] [2017-10-24T18:54:04.266Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-24T18:54:04.266Z] <<< HTTP RESPONSE 200
+[info] i  storage: uploading rules storage.rules...
+[debug] [2017-10-24T18:54:04.266Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/todo-d0bff/rulesets { source: { files: [ [Object] ] } } 
+ Tue Oct 24 2017 21:54:04 GMT+0300 (Финляндия (лето))
+[debug] [2017-10-24T18:54:04.773Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-24T18:54:04.773Z] [rules] created ruleset projects/todo-d0bff/rulesets/3e5e64e2-b99b-4c27-ad61-e62f4a41a16b
+[info] i  firestore: uploading rules firestore.rules...
+[debug] [2017-10-24T18:54:04.789Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/todo-d0bff/rulesets { source: { files: [ [Object] ] } } 
+ Tue Oct 24 2017 21:54:04 GMT+0300 (Финляндия (лето))
+[debug] [2017-10-24T18:54:04.789Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta1/projects/todo-d0bff/databases/(default)/indexes  
+ Tue Oct 24 2017 21:54:04 GMT+0300 (Финляндия (лето))
+[debug] [2017-10-24T18:54:05.180Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-24T18:54:05.180Z] [rules] created ruleset projects/todo-d0bff/rulesets/bbd3005e-ee33-45a0-8541-9c00f6fc2519
+[debug] [2017-10-24T18:54:05.763Z] <<< HTTP RESPONSE 200

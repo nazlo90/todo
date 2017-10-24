@@ -7,13 +7,18 @@ import {ActivatedRoute, Router} from '@angular/router';
 @Injectable()
 export class AuthService {
   user: Observable<User>;
+  readonly srorageAuthKey = 'user';
 
   constructor(private firebaseAuth: AngularFireAuth, private router: Router, private route: ActivatedRoute) {
     this.user = firebaseAuth.authState;
   }
 
-  isLoggedIn() {
-    return !!localStorage.getItem('user');
+  userId(): string {
+    return localStorage.getItem(this.srorageAuthKey);
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem(this.srorageAuthKey);
   }
 
   signup(email: string, password: string) {

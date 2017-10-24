@@ -52,7 +52,7 @@ import {AuthService} from './auth/auth.service';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFirestoreModule.enablePersistence(),
+    AngularFirestoreModule,
     AngularFireAuthModule
   ],
   providers: [RedditService, WikiService, DataService, AuthService],

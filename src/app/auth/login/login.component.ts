@@ -50,8 +50,9 @@ export class LoginComponent implements OnInit {
       this.authService.login(
         this.userform.get('email').value,
         this.userform.get('password').value)
-        .then(value => {
-          localStorage.setItem('user', value.uid);
+        .then(user => {
+          console.log(user);
+          localStorage.setItem(this.authService.srorageAuthKey, user.uid);
           this.data.toggleLoading(false);
           this.router.navigate(['../user-panel'], {
             relativeTo: this.route
